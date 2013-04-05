@@ -28,11 +28,8 @@ exports.handleRequest = function (request, response) {
     }
   });
 
-  var testUrl = '/Users/Catalyst/code/web-historian/spec/testdata/sites.txt';
-
   request.on('end', function() {
     var getPathname = url.parse(request.url).pathname;
-    //
     if (request.method === 'GET') {
       if (getPathname === '/') {
         response.writeHead(responseCode, headers);
