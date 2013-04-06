@@ -7,11 +7,9 @@ var message = [];
 exports.datadir = __dirname + "/../data/sites.txt";
 
 exports.handleRequest = function (request, response) {
-  var headers = defaultCorsHeaders;
-  var responseCode = 200;
-  
   console.log('Serving request type ' + request.method + ' for url ' + request.url);
-  
+
+  var responseCode = 200;
   var defaultCorsHeaders = {
   "access-control-allow-origin": "*",
   "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
@@ -19,7 +17,7 @@ exports.handleRequest = function (request, response) {
   "access-control-max-age": 10,
   "Content-Type" : "text/html"
   };
-
+  var headers = defaultCorsHeaders;
   headers['Content-Type'] = "text/html";
 
   request.on('data', function(chunk) {
@@ -37,7 +35,7 @@ exports.handleRequest = function (request, response) {
       } else if (getPathname === '/styles.css') {
         response.writeHead(responseCode, headers);
         response.end(fs.readFileSync(__dirname + '/public/styles.css'));
-      } else if (getPathname.match(/www/)) {  // need to refactor this to only handle www requests
+      } else if (getPathname.match(/www/)) { 
         response.writeHead(responseCode, headers);
         response.end(fs.readFileSync(__dirname + '/../data/sites' + getPathname));
       }

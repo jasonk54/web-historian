@@ -2,23 +2,11 @@ var fs = require('fs');
 var https = require('http-get');
 var _ = require('underscore');
 
-var duplicateUrlChecker = function(resultArray) {
-  var obj = {};
-
-  _.each(resultArray, function(ele) {
-    obj[ele] = true;
-  })
-  return Object.keys(obj);
-};
-
 exports.readUrls = function(filePath, cb) {
-  var resultArray = [];
-  var obj = {};
-  var filePath = '/Users/Catalyst/code/web-historian/data/sites.txt'
-  
+
   fileContent = fs.readFileSync(filePath);
   fileContent = fileContent.toString().split("\n");
-  return duplicatUrlChecker(cb(fileContent));
+  return cb(fileContent);
 };
 
 exports.downloadUrls = function(urls) {
