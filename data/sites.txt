@@ -1,2 +1,4 @@
-www.google.com
+www.google.comwww.bing.com
+www.bing.com
+www.bing.com
 www.google.com

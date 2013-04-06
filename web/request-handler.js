@@ -7,10 +7,11 @@ var message = [];
 exports.datadir = __dirname + "/../data/sites.txt";
 
 exports.handleRequest = function (request, response) {
-  console.log('Serving request type ' + request.method + ' for url ' + request.url);
-
+  var headers = defaultCorsHeaders;
   var responseCode = 200;
-  var message;
+  
+  console.log('Serving request type ' + request.method + ' for url ' + request.url);
+  
   var defaultCorsHeaders = {
   "access-control-allow-origin": "*",
   "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
@@ -18,8 +19,7 @@ exports.handleRequest = function (request, response) {
   "access-control-max-age": 10,
   "Content-Type" : "text/html"
   };
-  var headers = defaultCorsHeaders;
-  var message;
+
   headers['Content-Type'] = "text/html";
 
   request.on('data', function(chunk) {
@@ -45,7 +45,7 @@ exports.handleRequest = function (request, response) {
       responseCode = 302;
       response.writeHead(responseCode, headers);
       var filecontents = fs.appendFileSync(exports.datadir, message);
-      response.end(fs.readFileSync(exports.datadir, 'utf8')); //Need specify encoding type.  Running on older version
+      response.end(fs.readFileSync(exports.datadir, 'utf8')); //Need to specify encoding type.  Running on older version
     }
   });
 };
