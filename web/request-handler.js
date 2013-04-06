@@ -34,7 +34,10 @@ exports.handleRequest = function (request, response) {
       if (getPathname === '/') {
         response.writeHead(responseCode, headers);
         response.end(fs.readFileSync(__dirname + '/public/index.html'));
-      } else if (getPathname.length > 1) {
+      } else if (getPathname === '/styles.css') {
+        response.writeHead(responseCode, headers);
+        response.end(fs.readFileSync(__dirname + '/public/styles.css'));
+      } else if (getPathname.match(/www/)) {  // need to refactor this to only handle www requests
         response.writeHead(responseCode, headers);
         response.end(fs.readFileSync(__dirname + '/../data/sites' + getPathname));
       }

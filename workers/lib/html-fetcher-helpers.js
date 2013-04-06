@@ -1,6 +1,18 @@
 var fs = require('fs');
 var https = require('http-get');
-// var http = require('http'); 
+var _ = require('underscore');
+
+// exports.duplicateUrlChecker = function() {
+//   var resultArray = [];
+//   var obj = {};
+//   fetcher.readUrls("/Users/Catalyst/code/web-historian/data/sites.txt", function(urls) {
+//     resultArray = urls;
+//   });
+//   _.each(resultArray, function(ele) {
+//     obj[ele] = true;
+//   })
+//   return Object.keys(obj);
+// };
 
 exports.readUrls = function(filePath, cb) {
   fileContent = fs.readFileSync(filePath);
@@ -15,7 +27,7 @@ exports.downloadUrls = function(urls) {
       if (error) {
         console.log(error);
       } else {
-        console.log('File downloaded at: ' + filePath + urls);
+        console.log('File downloaded at: ' + result.file);
       }
     });
   }
